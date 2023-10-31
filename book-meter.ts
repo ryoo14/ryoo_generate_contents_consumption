@@ -5,10 +5,11 @@ export type Book = {
   readDate: string;
 };
 
-export async function getBookmeter() {
+export async function getBookmeter(): Promise<Book[]> {
   const bookArray: Book[] = [];
   for (const pageNum of [1, 2]) {
-    const url = `https://bookmeter.com/users/1319439/books/read?page=${pageNum}`;
+    const url =
+      `https://bookmeter.com/users/1319439/books/read?page=${pageNum}`;
     const res = await fetch(url);
     const html = await res.text();
     const doc = new DOMParser().parseFromString(html, "text/html");
@@ -21,17 +22,18 @@ export async function getBookmeter() {
 
     for (const books of bookGroups) {
       for (const book of books.getElementsByClassName("group__book")) {
-        const bookTitle = book.getElementsByClassName("thumbnail__cover")[0].querySelector("img")?.getAttribute("alt");
-        const readDate = book.getElementsByClassName("detail__date")[0].innerText;
+        const bookTitle = book.getElementsByClassName("thumbnail__cover")[0]
+          .getElementsByTagName("img")[0].getAttribute("alt");
+        const readDate =
+          book.getElementsByClassName("detail__date")[0].innerText;
         bookArray.push({
           title: bookTitle || "not found??",
-          readDate: readDate
+          readDate: readDate,
         });
       }
     }
-
-    return bookArray;
   }
+  return bookArray;
 }
 
 /* https://bookmeter.com/users/1319439/books/read

@@ -3,6 +3,6 @@
     "dev": "deno fmt && deno lint && deno run -A main.ts"
   },
   "imports": {
-    "dp": "https://deno.land/x/deno_dom@v0.1.38/deno-dom-wasm.ts"
+    "dom/": "https://deno.land/x/deno_dom@v0.1.38/"
   }
 }

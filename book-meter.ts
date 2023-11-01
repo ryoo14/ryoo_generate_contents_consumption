@@ -1,4 +1,4 @@
-import { DOMParser } from "dp";
+import { DOMParser } from "dom/deno-dom-wasm.ts";
 
 export type Book = {
   title: string;

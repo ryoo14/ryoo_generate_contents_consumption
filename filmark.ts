@@ -2,6 +2,7 @@ import { DOMParser } from "dom/deno-dom-wasm.ts";
 
 export type Movie = {
   title: string;
+  url: string;
 };
 
 export async function getFilmark(): Promise<Movie[]> {
@@ -18,9 +19,12 @@ export async function getFilmark(): Promise<Movie[]> {
   const movieArray: Movie[] = [];
 
   for (const movie of contentCards) {
-    const title = movie.getElementsByClassName("c-content-card__title")[0].getElementsByTagName("a")[0].innerText;
+    const titleElement = movie.getElementsByClassName("c-content-card__title")[0].getElementsByTagName("a")[0];
+    const title = titleElement.innerText;
+    const url = `https://filmarks.com${titleElement.getAttribute("href").split("?")[0]}`;
     movieArray.push({
       title: title,
+      url: url
     });
   }
 

@@ -15,5 +15,5 @@ for (const anime of animes) {
 }
 
 for (const movie of movies) {
-  console.log(`Movie ${movie.title}`);
+  console.log(`Movie ${movie.title} ${movie.url}`);
 }

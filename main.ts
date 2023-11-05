@@ -11,7 +11,7 @@ for (const book of books) {
 }
 
 for (const anime of animes) {
-  console.log(`Anime ${anime.date} ${anime.title} ${anime.episode}`);
+  console.log(`Anime ${anime.date} ${anime.title} ${anime.episode} ${anime.url}`);
 }
 
 for (const movie of movies) {

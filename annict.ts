@@ -4,6 +4,7 @@ export type Anime = {
   date: string;
   title: string;
   episode: number;
+  url: string;
 };
 
 export async function getAnnict(): Promise<Anime[]> {
@@ -26,7 +27,9 @@ export async function getAnnict(): Promise<Anime[]> {
     // date
     const date = col[0].getElementsByClassName("small text-muted")[0].innerText.split(" ")[0].replaceAll("-", "/");
     // title
-    const title = col[1].getElementsByClassName("text-body")[0].innerText;
+    const titleElement = col[1].getElementsByClassName("text-body")[0];
+    const title = titleElement.innerText;
+    const url = `https://annict.com${titleElement.getAttribute("href")}`;
     // episode number
     const episodeString = col[1].getElementsByClassName("px-1")[0].innerText;
     const episodeNum = Number(episodeString.match(/[0-9]+/));
@@ -34,6 +37,7 @@ export async function getAnnict(): Promise<Anime[]> {
       date: date,
       title: title,
       episode: episodeNum,
+      url: url,
     });
   }
 

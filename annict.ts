@@ -31,7 +31,12 @@ export async function getAnnict(): Promise<Anime[]> {
     const title = titleElement.innerText;
     const url = `https://annict.com${titleElement.getAttribute("href")}`;
     // episode number
-    const episodeString = col[1].getElementsByClassName("px-1")[0].innerText;
+    const episodeInfo = col[1].getElementsByClassName("px-1");
+    // if episodeInfo's length equal 0, it is overall impression of the anime.
+    if (episodeInfo.length === 0) {
+      continue;
+    }
+    const episodeString = episodeInfo[0].innerText;
     const episodeNum = Number(episodeString.match(/[0-9]+/));
     animeArray.push({
       date: date,

@@ -18,6 +18,7 @@ export async function getFilmark(): Promise<Movie[]> {
   const contentCards = doc.getElementsByClassName("c-content-card");
   const movieArray: Movie[] = [];
 
+  let count = 1;
   for (const movie of contentCards) {
     const titleElement = movie.getElementsByClassName("c-content-card__title")[0].getElementsByTagName("a")[0];
     const title = titleElement.innerText;
@@ -26,6 +27,10 @@ export async function getFilmark(): Promise<Movie[]> {
       title: title,
       url: url
     });
+    count += 1;
+    if (count === 5) {
+      break;
+    }
   }
 
   return movieArray;

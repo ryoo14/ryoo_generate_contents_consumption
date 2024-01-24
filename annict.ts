@@ -25,7 +25,8 @@ export async function getAnnict(): Promise<Anime[]> {
   for (const anime of animeList) {
     const col = anime.getElementsByClassName("col");
     // date
-    const date = col[0].getElementsByClassName("small text-muted")[0].innerText.split(" ")[0].replaceAll("-", "/");
+    const date = col[0].getElementsByClassName("small text-muted")[0].innerText
+      .split(" ")[0].replaceAll("-", "/");
     // title
     const titleElement = col[1].getElementsByClassName("text-body")[0];
     const title = titleElement.innerText;

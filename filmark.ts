@@ -20,12 +20,16 @@ export async function getFilmark(): Promise<Movie[]> {
 
   let count = 1;
   for (const movie of contentCards) {
-    const titleElement = movie.getElementsByClassName("c-content-card__title")[0].getElementsByTagName("a")[0];
+    const titleElement =
+      movie.getElementsByClassName("c-content-card__title")[0]
+        .getElementsByTagName("a")[0];
     const title = titleElement.innerText;
-    const url = `https://filmarks.com${titleElement.getAttribute("href").split("?")[0]}`;
+    const url = `https://filmarks.com${
+      titleElement.getAttribute("href").split("?")[0]
+    }`;
     movieArray.push({
       title: title,
-      url: url
+      url: url,
     });
     count += 1;
     if (count === 5) {

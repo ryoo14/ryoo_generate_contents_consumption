@@ -8,11 +8,6 @@ import {
 } from "npm:selenium-webdriver";
 import { Book } from "./book-meter.ts";
 
-export type BookSet = {
-  book: Book;
-  shortURL: string;
-};
-
 const capabilities: Capabilities = Capabilities.chrome();
 capabilities.set("chromeOptions", {
   args: [
@@ -21,14 +16,13 @@ capabilities.set("chromeOptions", {
     "--window-size=1920,1080",
   ],
   w3c: false,
-  detach: true,
 });
 
-export async function search(queries: Book[]): Promise<BookSet[]> {
+export async function search(queries: Book[]): Promise<Book[]> {
+  const booksWithShortURL: Book[] = [...queries];
   const driver: WebDriver = await new Builder()
     .withCapabilities(capabilities)
     .build();
-  const amazonSearchResult: BookSet[] = [];
   try {
     // Login
     await driver.get(
@@ -40,7 +34,7 @@ export async function search(queries: Book[]): Promise<BookSet[]> {
       urlAfterLogin = await driver.getCurrentUrl();
     }
 
-    for (const query of queries) {
+    for (const [index, query] of queries.entries()) {
       // Search
       await driver
         .wait(until.elementLocated(By.name("field-keywords")), 5000)
@@ -53,7 +47,7 @@ export async function search(queries: Book[]): Promise<BookSet[]> {
       await driver.sleep(5000);
 
       // Copy URL
-      const itemURL = await driver
+      const itemShortURL = await driver
         .findElement(By.id("amzn-ss-text-shortlink-textarea")).getAttribute(
           "value",
         );
@@ -63,12 +57,12 @@ export async function search(queries: Book[]): Promise<BookSet[]> {
         .wait(until.elementLocated(By.name("field-keywords")), 5000)
         .clear();
 
-      amazonSearchResult.push({ book: query, shortURL: itemURL });
+      booksWithShortURL[index].url = itemShortURL;
     }
-    return amazonSearchResult;
+    return booksWithShortURL;
   } catch (e) {
     console.log(e);
-    return amazonSearchResult;
+    return booksWithShortURL;
   } finally {
     driver && await driver.quit();
   }

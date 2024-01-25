@@ -1,11 +1,5 @@
 import { DOMParser } from "dom/deno-dom-wasm.ts";
-
-export type Anime = {
-  date: string;
-  title: string;
-  episode: number;
-  url: string;
-};
+import { Anime } from "./types.ts";
 
 export async function getAnnict(): Promise<Anime[]> {
   // https://annict.com/@ryoo14/records?month=10&year=2023

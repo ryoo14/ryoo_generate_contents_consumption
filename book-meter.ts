@@ -1,11 +1,6 @@
 import { DOMParser } from "dom/deno-dom-wasm.ts";
 import { search } from "./amazon.ts";
-
-export type Book = {
-  title: string;
-  readDate: string;
-  url: string;
-};
+import { Book } from "./types.ts";
 
 export async function getBookmeter(): Promise<Book[]> {
   const bookArray: Book[] = [];

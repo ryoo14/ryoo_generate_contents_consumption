@@ -1,6 +1,7 @@
-import { Book, getBookmeter } from "./book-meter.ts";
-import { Anime, getAnnict } from "./annict.ts";
-import { getFilmark, Movie } from "./filmark.ts";
+import { getBookmeter } from "./book-meter.ts";
+import { getAnnict } from "./annict.ts";
+import { getFilmark } from "./filmark.ts";
+import { Anime, Book, Movie } from "./types.ts";
 
 const books: Book[] = await getBookmeter();
 const animes: Anime[] = await getAnnict();

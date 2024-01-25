@@ -1,9 +1,5 @@
 import { DOMParser } from "dom/deno-dom-wasm.ts";
-
-export type Movie = {
-  title: string;
-  url: string;
-};
+import { Movie } from "./types.ts";
 
 export async function getFilmark(): Promise<Movie[]> {
   const url = "https://filmarks.com/users/ryoana14";

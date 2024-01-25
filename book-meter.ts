@@ -1,12 +1,13 @@
 import { DOMParser } from "dom/deno-dom-wasm.ts";
-import { BookSet, search } from "./amazon.ts";
+import { search } from "./amazon.ts";
 
 export type Book = {
   title: string;
   readDate: string;
+  url: string;
 };
 
-export async function getBookmeter(): Promise<BookSet[]> {
+export async function getBookmeter(): Promise<Book[]> {
   const bookArray: Book[] = [];
   const url = "https://bookmeter.com/users/1319439/books/read?page=1";
   const res = await fetch(url);
@@ -27,10 +28,11 @@ export async function getBookmeter(): Promise<BookSet[]> {
       bookArray.push({
         title: bookTitle || "not found??",
         readDate: readDate,
+        url: "",
       });
     }
   }
-  const searchResult: BookSet[] = await search(bookArray);
+  const searchResult: Book[] = await search(bookArray);
   return searchResult;
 }
 

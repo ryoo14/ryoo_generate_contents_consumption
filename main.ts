@@ -1,14 +1,13 @@
-import { getBookmeter } from "./book-meter.ts";
+import { Book, getBookmeter } from "./book-meter.ts";
 import { Anime, getAnnict } from "./annict.ts";
 import { getFilmark, Movie } from "./filmark.ts";
-import { BookSet } from "./amazon.ts";
 
-const books: BookSet[] = await getBookmeter();
+const books: Book[] = await getBookmeter();
 const animes: Anime[] = await getAnnict();
 const movies: Movie[] = await getFilmark();
 
 for (const book of books) {
-  console.log(`Book ${book.book.readDate} ${book.book.title} ${book.shortURL}`);
+  console.log(`Book ${book.readDate} ${book.title} ${book.url}`);
 }
 
 for (const anime of animes) {

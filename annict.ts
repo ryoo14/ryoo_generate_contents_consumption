@@ -1,12 +1,10 @@
-import { DOMParser } from "dom/deno-dom-wasm.ts"
 import { Anime } from "./types.ts"
+import { httpFetch } from "./utils.ts"
 
 export async function getAnnict(): Promise<Anime[]> {
   // https://annict.com/@ryoo14/records?month=10&year=2023
   const url = "https://annict.com/@ryoo14/records?page=1"
-  const res = await fetch(url)
-  const html = await res.text()
-  const doc = new DOMParser().parseFromString(html, "text/html")
+  const doc = await httpFetch(url)
 
   if (doc == null) {
     throw new Error("failed to fetch data from annict")

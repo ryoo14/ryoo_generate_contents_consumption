@@ -44,13 +44,17 @@ export async function search(queries: Book[]): Promise<Book[]> {
       await driver
         .wait(until.elementLocated(By.linkText("テキスト")), 5000)
         .click();
-      await driver.sleep(5000);
 
       // Copy URL
-      const itemShortURL = await driver
-        .findElement(By.id("amzn-ss-text-shortlink-textarea")).getAttribute(
-          "value",
-        );
+      const itemShortURLElement = await driver.findElement(
+        By.id("amzn-ss-text-shortlink-textarea"),
+      );
+      await driver.wait(async () => {
+        const value = await itemShortURLElement.getAttribute("value");
+        return value !== "" && value !== null;
+      }, 10000);
+
+      const itemShortURL = await itemShortURLElement.getAttribute("value");
 
       // Clear SearchBox
       await driver

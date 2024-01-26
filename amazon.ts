@@ -6,7 +6,7 @@ import {
   until,
   WebDriver,
 } from "npm:selenium-webdriver";
-import { Book } from "./book-meter.ts";
+import { Book } from "./types.ts";
 
 const capabilities: Capabilities = Capabilities.chrome();
 capabilities.set("chromeOptions", {

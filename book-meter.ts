@@ -1,13 +1,11 @@
-import { DOMParser } from "dom/deno-dom-wasm.ts"
+import { httpFetch } from "./utils.ts"
 import { amazonItemSearch } from "./amazon.ts"
 import { Book } from "./types.ts"
 
 export async function getBookmeter(): Promise<Book[]> {
   const bookArray: Book[] = []
   const url = "https://bookmeter.com/users/1319439/books/read?page=1"
-  const res = await fetch(url)
-  const html = await res.text()
-  const doc = new DOMParser().parseFromString(html, "text/html")
+  const doc = await httpFetch(url)
 
   if (doc == null) {
     throw new Error("failed to fetch data from bookmeter")

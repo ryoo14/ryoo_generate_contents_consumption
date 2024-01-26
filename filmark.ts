@@ -1,11 +1,9 @@
-import { DOMParser } from "dom/deno-dom-wasm.ts"
+import { httpFetch } from "./utils.ts"
 import { Movie } from "./types.ts"
 
 export async function getFilmark(): Promise<Movie[]> {
   const url = "https://filmarks.com/users/ryoana14"
-  const res = await fetch(url)
-  const html = await res.text()
-  const doc = new DOMParser().parseFromString(html, "text/html")
+  const doc = await httpFetch(url)
 
   if (doc == null) {
     throw new Error("failed to fetch data from filmark")

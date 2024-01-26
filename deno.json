@@ -4,5 +4,8 @@
   },
   "imports": {
     "dom/": "https://deno.land/x/deno_dom@v0.1.38/"
+  },
+  "fmt": {
+    "semiColons": false
   }
 }

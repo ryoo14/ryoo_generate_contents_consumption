@@ -1,5 +1,5 @@
 import { DOMParser } from "dom/deno-dom-wasm.ts";
-import { search } from "./amazon.ts";
+import { amazonItemSearch } from "./amazon.ts";
 import { Book } from "./types.ts";
 
 export async function getBookmeter(): Promise<Book[]> {
@@ -27,7 +27,7 @@ export async function getBookmeter(): Promise<Book[]> {
       });
     }
   }
-  const searchResult: Book[] = await search(bookArray);
+  const searchResult: Book[] = await amazonItemSearch(bookArray);
   return searchResult;
 }
 

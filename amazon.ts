@@ -18,7 +18,7 @@ capabilities.set("chromeOptions", {
   w3c: false,
 });
 
-export async function search(queries: Book[]): Promise<Book[]> {
+export async function amazonItemSearch(queries: Book[]): Promise<Book[]> {
   const booksWithShortURL: Book[] = [...queries];
   const driver: WebDriver = await new Builder()
     .withCapabilities(capabilities)

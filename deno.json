@@ -7,6 +7,9 @@
     "dom/": "https://deno.land/x/deno_dom@v0.1.38/"
   },
   "fmt": {
+    "lineWidth": 160,
+    "useTabs": false,
+    "singleQuote": false,
     "semiColons": false
   }
 }

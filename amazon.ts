@@ -1,11 +1,4 @@
-import {
-  Builder,
-  By,
-  Capabilities,
-  Key,
-  until,
-  WebDriver,
-} from "npm:selenium-webdriver"
+import { Builder, By, Capabilities, Key, until, WebDriver } from "npm:selenium-webdriver"
 import { Book } from "./types.ts"
 
 const capabilities: Capabilities = Capabilities.chrome()

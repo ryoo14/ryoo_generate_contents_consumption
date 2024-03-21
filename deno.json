@@ -1,10 +1,11 @@
 {
   "tasks": {
     "dev": "deno fmt && deno lint",
-    "run": "deno run -A main.ts"
+    "run": "deno run -A main.ts",
+    "update": "udd *.ts deno.json"
   },
   "imports": {
-    "dom/": "https://deno.land/x/deno_dom@v0.1.38/"
+    "dom/": "https://deno.land/x/deno_dom@v0.1.45/"
   },
   "fmt": {
     "lineWidth": 160,

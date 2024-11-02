@@ -35,7 +35,7 @@ export async function amazonItemSearch(queries: Book[]): Promise<Book[]> {
 
       // Generate URL
       await driver
-        .wait(until.elementLocated(By.linkText("テキスト")), 5000)
+        .wait(until.elementLocated(By.id("amzn-ss-get-link-button")), 5000)
         .click()
 
       // Copy URL

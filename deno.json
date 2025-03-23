@@ -5,7 +5,7 @@
     "update": "udd *.ts deno.json"
   },
   "imports": {
-    "dom/": "https://deno.land/x/deno_dom@v0.1.45/"
+    "deno-dom": "jsr:@b-fuze/deno-dom"
   },
   "fmt": {
     "lineWidth": 160,

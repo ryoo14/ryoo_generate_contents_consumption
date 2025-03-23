@@ -1,4 +1,4 @@
-import { DOMParser } from "dom/deno-dom-wasm.ts"
+import { DOMParser } from "deno-dom"
 
 export async function httpFetch(url: string) {
   try {

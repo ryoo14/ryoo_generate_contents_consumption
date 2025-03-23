@@ -49,6 +49,11 @@ export async function amazonItemSearch(queries: Book[]): Promise<Book[]> {
 
       const itemShortURL = await itemShortURLElement.getAttribute("value")
 
+      // Click close button of affiliate dialog
+      await driver
+        .wait(until.elementLocated(By.className("a-button-close")), 5000)
+        .click()
+
       // Clear SearchBox
       await driver
         .wait(until.elementLocated(By.name("field-keywords")), 5000)
